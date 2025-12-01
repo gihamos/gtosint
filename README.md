@@ -1,7 +1,5 @@
 # GTOsint - Game Tracker Open Source Intelligence
 
-[Accéder au site web](https://app.gtosint.com)
-
 **GTOsint** est une application web permettant d'obtenir certaines informations de jeu d'un joueur à partir de son pseudo. Ce projet full-stack combine des technologies modernes pour le **front-end** et le **back-end**, ainsi que l'intégration d'API et de bases de données, avec une interface utilisateur développée avec **Angular**.
 
 Ce projet est réalisé dans le cadre de notre 3ᵉ année de licence informatique à l'Université du Mans, dans les modules **"IPM" (Interaction Personne Machine)** et **"Architecture Web"**.  
@@ -20,11 +18,6 @@ Ce projet est réalisé dans le cadre de notre 3ᵉ année de licence informatiq
 - **Back-end** : Angular
 - **Base de données** : 
 - **API** : Intégration d'API publiques pour récupérer des informations de jeu (Steam - Riot)
-
-## Organisation GitHub
-
-Nous avons créé une organisation dédiée pour centraliser tous les dépôts liés au projet GTOsint :  
-👉 [Organisation GitHub GTOsint](https://github.com/GTOsint)  
 
 ## Membres de l'équipe
 
