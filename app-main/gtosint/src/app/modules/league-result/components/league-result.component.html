@@ -1,0 +1,36 @@
+<div class="banner-full">
+  <div class="banner-overlay">
+    <h1 class="banner-title">League rankings</h1>
+
+    <div class="league-table-wrapper">
+      <table class="league-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Logo</th>
+            <th>Name</th>
+            <th>Region</th>
+            <th>Slug</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (league of leagueData; track trackById; let i = $index) {
+            <tr [class]="'rank-' + (i + 1)">
+              <td>{{ i + 1 }}</td>
+              <td><img [src]="league.image" alt="{{ league.name }}" class="league-image" /></td>
+              <td>{{ league.name }}</td>
+              <td>{{ league.region }}</td>
+              <td>{{ league.slug }}</td>
+              <td>{{ league.priority }}</td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="6" class="no-league">no league find.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

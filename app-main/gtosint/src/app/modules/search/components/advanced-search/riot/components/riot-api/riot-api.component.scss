@@ -1,0 +1,114 @@
+* {
+    box-sizing: border-box;
+}
+
+.riot-search-container {
+    max-width: 80%;
+    margin: 50px auto; /* Cela centre déjà l'élément horizontalement */
+    padding: 40px;
+    border-radius: 25px;
+    background-color: #0D121C;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    border: 1px solid #0B2E6C;
+}
+
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; /* Image en arrière-plan */
+}
+
+.background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    border-radius: 10px; /* Garder les coins arrondis */
+}
+
+h2 {
+    color: #ffffff; /* Nouveau titre blanc */
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    color: #ffffff; /* Texte blanc */
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0B2E6C; /* Nouveau fond sombre pour les champs */
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus {
+    outline: 2px solid #57F2AA; /* Accent sur le focus avec une couleur claire */
+}
+
+p {
+    color: #ff5e5e; /* Erreur en rouge */
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.submitButton {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #57F2AA; /* Bouton principal avec couleur verte */
+    color: #120F26; /* Texte foncé sur le bouton */
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submitButton:disabled {
+    background-color: #57f2aa82;
+    cursor: not-allowed;
+}
+
+.submitButton:hover:not(:disabled) {
+    background-color: #45d98a; /* Hover plus foncé pour le bouton */
+}
+
+@media (max-width: 768px) {
+    .riot-search-container {
+        padding: 40px;
+        margin-top: 20%;
+        margin-left: 10px;
+        margin-right: 20px;
+    }
+}

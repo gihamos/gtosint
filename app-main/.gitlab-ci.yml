@@ -1,0 +1,56 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  KUBE_NAMESPACE: "production"
+  DOCKER_DRIVER: "overlay2"
+
+build:
+  stage: build
+  image: docker:20.10.7
+  services:
+    - docker:20.10.7-dind
+  before_script:
+    - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" "registry.gitlab.com"
+  script:
+    - docker rmi $(docker images -q) || true
+    - docker build --build-arg STAGE=prod --build-arg MONGODB_URI=$MONGODB_URI --build-arg FRONT_URL=$FRONT_URL --build-arg BACK_PORT=$BACK_PORT -t $CI_REGISTRY_IMAGE/frontend:$CI_COMMIT_REF_SLUG -f ./gtosint/Dockerfile ./gtosint
+    - docker push $CI_REGISTRY_IMAGE/frontend:$CI_COMMIT_REF_SLUG
+    - docker tag $CI_REGISTRY_IMAGE/frontend:$CI_COMMIT_REF_SLUG $CI_REGISTRY_IMAGE/frontend:latest
+    - docker push $CI_REGISTRY_IMAGE/frontend:latest
+    - docker build --build-arg MONGODB_URI=$MONGODB_URI --build-arg FRONT_URL=$FRONT_URL --build-arg BACK_PORT=$BACK_PORT -t $CI_REGISTRY_IMAGE/backend:$CI_COMMIT_REF_SLUG -f ./server/Dockerfile ./server
+    - docker push $CI_REGISTRY_IMAGE/backend:$CI_COMMIT_REF_SLUG
+    - docker tag $CI_REGISTRY_IMAGE/backend:$CI_COMMIT_REF_SLUG $CI_REGISTRY_IMAGE/backend:latest
+    - docker push $CI_REGISTRY_IMAGE/backend:latest
+    - docker images | grep gtosint
+  only:
+    - main
+
+deploy:
+  stage: deploy
+  image:
+    name: debian:stable-slim
+    entrypoint: [""]
+  before_script:
+    - apt-get update && apt-get install -y curl
+    - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    - chmod +x kubectl
+    - mv kubectl /usr/local/bin/kubectl
+    - echo "$KUBECONFIG_BASE_64" | wc -c 
+    - echo "$KUBECONFIG_BASE_64" | base64 -d | grep "apiVersion" || echo "Décodage échoué"
+    - echo "$KUBECONFIG_BASE_64" | base64 -d > /tmp/kubeconfig
+    - export KUBECONFIG=/tmp/kubeconfig
+    - kubectl get nodes
+  script:
+    - kubectl version
+    - kubectl get nodes
+    - kubectl apply -f k8s/
+    - kubectl set image deployment/frontend frontend=$CI_REGISTRY_IMAGE/frontend:$CI_COMMIT_REF_SLUG --namespace=$KUBE_NAMESPACE --record
+    - kubectl set image deployment/backend backend=$CI_REGISTRY_IMAGE/backend:$CI_COMMIT_REF_SLUG --namespace=$KUBE_NAMESPACE --record
+    - kubectl rollout restart deployment/frontend --namespace=$KUBE_NAMESPACE
+    - kubectl rollout restart deployment/backend --namespace=$KUBE_NAMESPACE
+  only:
+    - main
+
+

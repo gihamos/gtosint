@@ -1,0 +1,39 @@
+<div>
+  <!-- Affichez les informations du pays si disponibles -->
+  @if (countryInfo) {
+    <div>
+      <p>{{ countryInfo.name }}</p>
+      <p><img [src]="countryInfo.flagUrl" alt="Flag of {{ countryInfo.name }}" width="50" /></p>
+    </div>
+  } @else {
+    <p>No country information available.</p>
+  }
+
+  <!-- Bouton pour activer/désactiver le mode "Modify" -->
+  <button class="update-button" (click)="toggleModifyMode()">
+    {{ isModifyMode ? 'Cancel' : 'Update' }}
+  </button>
+
+  <!-- Formulaire pour modifier le pays (affiché uniquement en mode "Modify") -->
+  @if (isModifyMode) {
+    <div>
+      <input
+      class="search-input"
+        type="text"
+        [(ngModel)]="newCountry"
+        (input)="search(newCountry)"
+        placeholder="Search for a country"
+      />
+      <!-- Menu déroulant pour afficher les résultats de la recherche -->
+      @if (searchResults.length > 0) {
+        <ul class="search-results">
+          @for (result of searchResults; track result.id) {
+            <li (click)="selectCountry(result)" (keydown.enter)="selectCountry(result)" role="button" tabindex="0">
+              {{ result.name }}
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  }
+</div>

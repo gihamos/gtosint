@@ -1,0 +1,70 @@
+@if(!appid){
+  <div class="profil-container">
+    <h2 class="title"> Welcome to the Steam profile information page</h2>
+    <p class="sub-title">
+     of player <strong>{{ ProfileInfo?.personaname }}</strong>
+    </p>
+
+    <div class="avatar">
+      <img [src]="ProfileInfo?.avatarmedium" alt="User Avatar" class="avatar-img">
+    </div>
+
+    <div class="info-section">
+      <div class="info-item">
+        <h5>Last disconnection</h5>
+        <p>{{ ProfileInfo?.lastlogoff ? getDateStr(ProfileInfo?.lastlogoff) : 'inconnu' }}</p>
+      </div>
+      <div class="info-item">
+        <h5>Profile visibility</h5>
+        <p>{{ ProfileInfo?.communityvisibilitystate ? 'Public' : 'Private' }}</p>
+      </div>
+      <div class="info-item">
+        <h5>Country</h5>
+        <p>{{ ProfileInfo?.loccountrycode }}</p>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-item">
+        <h5>Steam ID</h5>
+        <p>{{ ProfileInfo?.steamid }}</p>
+      </div>
+      <div class="info-item">
+        <h5>Possessed games</h5>
+        <p>{{ idGamesForUser.length }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-container">
+    <label for="searchInput" class="search-label">
+      <h3>Consult the statistics of the games owned by {{ ProfileInfo?.personaname }} :</h3>
+    </label>
+    <input
+      id="searchInput"
+      type="text"
+      class="search-input"
+      placeholder="Tap the title of a game ..."
+     (input)="handleSearchInput($event)"
+      autocomplete="on"
+    />
+
+    <ul id="gameList" class="game-list">
+      @for (game of filteredGames; track $index) {
+          <li class='game-item' (click)='onSelect(game)' (keydown.enter)='onSelect(game)' tabindex="0">
+            {{ game.name }}
+          </li>
+
+      }
+
+    </ul>
+  </div>
+  <button class="back-button" (click)="onInit()" ><img src="https://cdn-icons-png.flaticon.com/512/61/61449.png?w=826&t=st=1663554163~exp=1663554763~hmac=ebceecf0ea9ee6c532733c1d1e8e94105cf24bbdafcb506aa3f718c58c70e2b8" alt="Back icon" style="max-width: 25px;" title="Back to home search"></button>
+
+
+
+}
+@else {
+  <app-game-user-view (sendDataToParent)="handleDataFromChild($event)" [steamId]="steamid" [appid]="appid"></app-game-user-view>
+}
+

@@ -1,0 +1,39 @@
+<div class="riotres">
+  @if (riotData) {
+    <h2>
+      <img
+        [src]="riotData.summonerInfo.profileIconUrl"
+        alt="Icône de profil"
+        width="50"
+        height="50"
+      />
+      {{ riotData.gameName }}#{{ riotData.tagLine }}
+    </h2>
+    <p>Niveau: {{ riotData.summonerInfo.summonerLevel }}</p>
+
+    <h3>Historique des matchs</h3>
+    <ul>
+      @for (match of riotData.matchHistory; track match.matchId) {
+        <li>
+          <img
+            [src]="match.championIconUrl"
+            alt="{{ match.championName }}"
+            width="40"
+            height="40"
+          />
+          <strong>{{ match.championName }}</strong> - {{ match.gameMode }} ({{
+            match.gameDuration
+          }}s) -
+          <span
+            [style]="{
+              color: match.win ? 'green' : 'red',
+              fontWeight: match.kills > 10 ? 'bold' : 'normal',
+            }"
+          >
+            {{ match.kills }}/{{ match.deaths }}/{{ match.assists }}
+          </span>
+        </li>
+      }
+    </ul>
+  }
+</div>

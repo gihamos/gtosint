@@ -1,0 +1,73 @@
+.riotres {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 25px; /* Coins plus arrondis comme dans le premier design */
+    background-color: #0D121C; /* Correspond à la couleur de fond sombre du premier design */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  .riotres h2 {
+    color: #ffffff; /* Blanc pour le titre */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+  
+  .riotres h2 img {
+    border-radius: 50%;
+    border: 2px solid #57F2AA; /* Garde l'accent vert pour l'image */
+  }
+  
+  .riotres p {
+    color: #cfcfcf; /* Texte en gris clair pour les paragraphes */
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  .riotres h3 {
+    color: #57F2AA; /* Titre avec l'accent vert */
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  
+  .riotres ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .riotres li {
+    display: flex;
+    align-items: center;
+    background-color: #0B2E6C; /* Fond sombre pour les éléments de la liste */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: transform 0.2s;
+  }
+  
+  .riotres li:hover {
+    transform: scale(1.02);
+  }
+  
+  .riotres li img {
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .riotres li strong {
+    color: #ffffff; /* Texte blanc pour la partie importante */
+    font-size: 16px;
+    flex-grow: 1;
+  }
+  
+  .riotres li span {
+    font-size: 14px;
+    color: #cfcfcf; /* Gris clair pour les autres informations */
+  }
+  

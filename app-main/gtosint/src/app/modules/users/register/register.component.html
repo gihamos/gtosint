@@ -1,0 +1,67 @@
+<div class="background-image">
+  <img src="register.jpeg" alt="Login Background">
+  <div class="overlay"></div> <!-- Superposition pour obscurcir l'image -->
+</div>
+
+<div class="register-container">
+  <h2>Register</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+      <!-- Name -->
+      <div class="form-group">
+          <label for="name">Name</label>
+          <input formControlName="name" type="text">
+
+          @if (registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.touched) { 
+              <p class="error">You need to enter your Name</p> 
+          }
+          @if (registerForm.get('name')?.errors?.['minlength'] && registerForm.get('name')?.touched) { 
+              <p class="error">Name must be at least 2 characters</p>
+          }
+          @if (registerForm.get('name')?.errors?.['maxlength'] && registerForm.get('name')?.touched) { 
+              <p class="error">Name cannot exceed 35 characters</p>
+          }
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+          <label for="email">Mail</label>
+          <input formControlName="email" type="text">
+
+          @if (registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.touched) { 
+              <p class="error">You need to enter your Email</p> 
+          }
+          @if (registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched) { 
+              <p class="error">Invalid email format</p>
+          }
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+          <label for="password">Password</label>
+          <input formControlName="password" type="password">
+
+          @if (registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched) { 
+              <p class="error">You need to enter your Password</p> 
+          }
+          @if (registerForm.get('password')?.errors?.['minLength'] && registerForm.get('password')?.touched) { 
+              <p class="error">Password must be at least 8 characters</p>
+          }
+          @if (registerForm.get('password')?.errors?.['uppercaseRequired'] && registerForm.get('password')?.touched) { 
+              <p class="error">Password must contain at least one uppercase letter</p>
+          }
+          @if (registerForm.get('password')?.errors?.['numberRequired'] && registerForm.get('password')?.touched) { 
+              <p class="error">Password must contain at least one number</p>
+          }
+          @if (registerForm.get('password')?.errors?.['specialCharRequired'] && registerForm.get('password')?.touched) { 
+              <p class="error">Password must contain at least one special character</p>
+          }
+      </div>
+
+      <button type="submit" [disabled]="registerForm.invalid" class="submitButton">Register</button>
+      @if (registerErrorMessage) {
+        <p class="error">{{ registerErrorMessage }}</p>
+      }
+      
+  </form>
+</div>

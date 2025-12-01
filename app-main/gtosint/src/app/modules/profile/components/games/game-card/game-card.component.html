@@ -1,0 +1,20 @@
+<div class="game-card">
+    @if (game) {
+      <div class="game-content">
+        <!-- Conteneur pour l'image -->
+        @if (game.coverUrl) {
+          <div class="game-cover">
+            <img [src]="game.coverUrl" alt="Cover of {{ game.name }}" />
+          </div>
+        }
+        <!-- Conteneur pour le texte -->
+        <div class="game-details">
+          <h3 class="game-title">{{ game.name }}</h3>
+          <!-- <p class="game-summary">{{ game.summary }}</p>
+          <p class="game-platforms"><strong>Platforms:</strong> {{ game.platforms }}</p> -->
+        </div>
+      </div>
+    } @else {
+      <p>No games available.</p>
+    }
+  </div>

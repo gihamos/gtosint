@@ -1,0 +1,86 @@
+.banner-full {
+  background-image: url('/lolRanking/img2.webp');
+  background-size: cover;
+  background-position: center;
+  padding: 2rem 1.5rem;
+  max-width: 2000px;         /* 🔭 Ultra large bannière */
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  color: white;
+  overflow: hidden;
+  margin-top: 5%;
+}
+
+.banner-overlay {
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.banner-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #f5f5f5;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.league-table-wrapper {
+  overflow-x: auto;
+}
+
+.league-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+  font-size: 0.95rem;
+}
+
+.league-table th,
+.league-table td {
+  padding: 0.75rem;
+  text-align: center;
+  color: #2c003e;
+}
+
+.league-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+.league-table tr:hover {
+  background-color: #eee9ff;
+}
+
+/* Podium ranks */
+.rank-1 {
+  background-color: #FFD70033;
+  font-weight: bold;
+}
+.rank-2 {
+  background-color: #C0C0C033;
+  font-weight: bold;
+}
+.rank-3 {
+  background-color: #CD7F3233;
+  font-weight: bold;
+}
+
+.league-image {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.no-league {
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 1.5rem;
+  color: white;
+}

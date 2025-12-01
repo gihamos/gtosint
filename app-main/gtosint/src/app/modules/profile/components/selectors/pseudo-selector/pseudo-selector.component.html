@@ -1,0 +1,34 @@
+<!-- pseudo-selector.component.html -->
+<div class="component">
+
+  <!-- Liste des pseudos -->
+  @if (pseudos.length > 0) {
+    <ul>
+      @for (pseudo of pseudos; track pseudo) {
+        <li>
+          {{ pseudo }}
+          <button (click)="deletePseudo(pseudo)">Delete</button>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p>No username saved</p>
+  }
+
+  <!-- Bouton pour activer/désactiver le mode "Modify" -->
+  <button class="update-button" (click)="toggleModifyMode()">
+    {{ isModifyMode ? 'Cancel' : 'Update' }}
+  </button>
+
+  <!-- Formulaire pour ajouter un pseudo (affiché uniquement en mode "Modify") -->
+  @if (isModifyMode) {
+    <div>
+      <input
+        type="text"
+        [(ngModel)]="newPseudo"
+        placeholder="Enter a new pseudo"
+      />
+      <button (click)="addPseudo()">Add</button>
+    </div>
+  }
+</div>

@@ -1,0 +1,75 @@
+.update-button {
+    background-color: #0D121C;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #0B2E6C;
+    //cursor: pointer;
+    font-size: 10px;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: #222428; /* Couleur de fond plus foncée au survol */
+    }
+  
+    /* Style en mode "Cancel" */
+    // &.cancel-mode {
+    //   background-color: #dc3545; /* Couleur de fond rouge */
+    //   &:hover {
+    //     background-color: #c82333; /* Couleur de fond plus foncée au survol */
+    //   }
+    // }
+  }
+
+  .search-container {
+    margin-top: 20px; /* Espacement par rapport au bouton */
+  }
+  
+  /* Styles pour la barre de recherche */
+  .search-input {
+    width: 100%; /* Prend toute la largeur disponible */
+    padding: 8px 12px; /* Espacement intérieur */
+    //border: 1px solid #0B2E6C; /* Bordure */
+    border-radius: 10px; /* Coins arrondis */
+    background-color: #222428; /* Couleur de fond */
+    color: #ffffff; /* Texte blanc */
+    font-size: 14px; /* Taille de la police */
+    outline: none; /* Supprime la bordure de focus par défaut */
+  
+    /* Style au focus */
+    // &:focus {
+    //   //border-color: #1E90FF; /* Changement de couleur de bordure au focus */
+    //   //box-shadow: 0 0 5px rgba(30, 144, 255, 0.5); /* Ombre légère au focus */
+    // }
+  
+    /* Placeholder */
+    &::placeholder {
+      color: #6c757d; /* Couleur du texte du placeholder */
+    }
+  }
+  
+  /* Styles pour la liste déroulante des résultats */
+  .search-results {
+    list-style: none; /* Supprime les puces de la liste */
+    padding: 0; /* Supprime le padding par défaut */
+    margin-top: 5px; /* Espacement par rapport à l'input */
+    border: 1px solid #0B2E6C; /* Bordure */
+    border-radius: 10px; /* Coins arrondis */
+    background-color: #0D121C; /* Couleur de fond */
+    max-height: 150px; /* Hauteur maximale */
+    overflow-y: auto; /* Défilement vertical si nécessaire */
+  
+    /* Styles pour chaque élément de la liste */
+    li {
+      padding: 8px 12px; /* Espacement intérieur */
+      color: #ffffff; /* Texte blanc */
+      cursor: pointer; /* Curseur en forme de main */
+      transition: background-color 0.3s ease; /* Transition fluide */
+  
+      /* Style au survol */
+      &:hover {
+        background-color: #222428; /* Couleur de fond plus foncée au survol */
+      }
+    }
+  }

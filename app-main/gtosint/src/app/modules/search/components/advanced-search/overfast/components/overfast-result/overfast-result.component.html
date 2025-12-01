@@ -1,0 +1,80 @@
+<div style="margin-top: 10%;">
+    @if (overData) {
+        <div class="player-info">
+            <!-- Avatar -->
+            <img class="player-avatar" [src]="overData.summary.avatar" alt="Avatar du joueur">
+        
+            <!-- Namecard avec pseudo superposé -->
+            <div class="namecard-container">
+                <img class="player-namecard" [src]="overData.summary.namecard" alt="Namecard">
+                <p class="player-username">{{ overData.summary.username }}</p>
+                <p class="player-title">{{ overData.summary.title }}</p>
+            </div>
+        
+            <!-- Endorsement -->
+            <img class="endorsement-icon" [src]="overData.summary.endorsement.frame" alt="Endorsement">
+        </div>
+        <div class="controls-container">
+            <div class="switch-container">
+                <!-- Bouton switch PC / Console -->
+                <div class="switch">
+                    <button [class.active]="selectedPlatform === 'pc'" (click)="selectPlatform('pc')">PC</button>
+                    <button [class.active]="selectedPlatform === 'console'" (click)="selectPlatform('console')">Console</button>
+                </div>
+            
+                <!-- Bouton switch Quickplay / Competitive -->
+                <div class="switch">
+                    <button [class.active]="selectedMode === 'quickplay'" (click)="selectMode('quickplay')">Quickplay</button>
+                    <button [class.active]="selectedMode === 'competitive'" (click)="selectMode('competitive')">Competitive</button>
+                </div>
+            </div>
+
+            
+            @if (career) {
+                <div class="select-response">
+                    <div class="category-hero">
+                        <div class="hero-selection">
+                            <!-- Image du héros -->
+                            <img class="hero-icon" [src]="getHeroIcon()" alt="Icône héros selectionner">
+                        
+                            <!-- Menu déroulant -->
+                            <select (change)="updateSelectedHero($event)">
+                                <option value="allHeroes">All heroes</option>
+                                @if (career) {
+                                    @for (hero of getHeroNames(); track hero) {
+                                        <option [value]="hero">{{ hero }}</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        @if (categorys) {
+                            <!-- Liste déroulante qui s'affiche sur le côté -->
+                            <div class="dropdown-list">
+                                @for (category of getAllCategory(); track category){
+                                    <div (click)="selectCategorie(category)" (keydown.enter)="selectCategorie(category)" role="button" tabindex="0">
+                                        {{ category }}
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                    <div class="stats">
+                        @if(stats) {
+                                <div class="stats-container">
+                                    @for(stat of stats; track stat.key){
+                                        <div class="stat-card">
+                                            <div class="label">{{ stat.label }}</div>
+                                            <div class="value">{{ stat.value }}</div>
+                                        </div>
+                                    }
+                                </div>
+                        }
+                    </div>
+                </div>
+            } @else {
+                <h1 class="no-data"> No data find.</h1>
+            }
+        </div>
+    }
+</div>

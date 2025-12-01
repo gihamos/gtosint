@@ -1,0 +1,107 @@
+// .game-selector {
+//     //background-color: #0D121C;
+// }
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 4 colonnes de largeur égale */
+    gap: 16px; /* Espacement entre les cartes */
+    margin-bottom: 16px; /* Espacement sous la grille */
+    grid-auto-rows: 1fr;
+  }
+
+  @media (max-width: 1024px) {
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 1fr;
+    }
+  }
+  
+  /* Styles pour les écrans mobiles */
+  @media (max-width: 768px) {
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 1fr;
+    }
+  }
+  
+  /* Styles pour les très petits écrans */
+  // @media (max-width: 480px) {
+  //   .games-grid {
+  //     grid-template-columns: 1fr;
+  //   }
+  // }
+
+  app-game-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Prend toute la hauteur disponible */
+  }
+  
+  .update-button {
+    background-color: #0D121C;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #0B2E6C;
+    //cursor: pointer;
+    font-size: 10px;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: #222428;
+    }
+  
+    /* Style en mode "Cancel" */
+    // &.cancel-mode {
+    //   background-color: #dc3545; /* Couleur de fond rouge */
+    //   &:hover {
+    //     background-color: #c82333; /* Couleur de fond plus foncée au survol */
+    //   }
+    // }
+  }
+  
+  /* Styles pour le formulaire de recherche */
+  input[type="text"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #0B2E6C;
+    border-radius: 10px;
+    background-color: #0D121C;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+  
+    &:focus {
+      border-color: #1E90FF;
+      box-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+    }
+  
+    &::placeholder {
+      color: #6c757d;
+    }
+  }
+  
+  /* Styles pour la liste déroulante des résultats */
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 8px;
+  
+    li {
+      padding: 8px 12px;
+      background-color: #131313;
+      border: 1px solid #0B2E6C;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #222428;
+      }
+    }
+  }

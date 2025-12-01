@@ -1,0 +1,17 @@
+<!-- src/app/components/search/cr-api/cr-api.component.html -->
+<div class="search-over-container">
+  <h1>Clash Royale Search</h1>
+  <form (ngSubmit)="submitForm()" [formGroup]="clashRoyaleForm">
+    <div class="form-group">
+      <div>
+        <label for="clashId">Clash Royale Identifier (ex: LP0GGR09U):</label>
+        <input id="clashId" formControlName="clashId" type="text" required>
+        @if (clashRoyaleForm.get('clashId')?.errors?.['required']) {
+          <p>You need to enter your Clash Royale identifier.</p>
+        }
+      </div>
+    </div>
+    <button class="submitButton" type="submit" [disabled]="clashRoyaleForm.invalid">Search</button>
+  </form>
+</div>
+

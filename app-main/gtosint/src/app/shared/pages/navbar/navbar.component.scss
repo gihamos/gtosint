@@ -1,0 +1,197 @@
+/* Style général de la navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #0D121C;
+  padding-top: 15px ;
+  padding-bottom: 15px ;
+  z-index: 1000;
+  border-bottom: 1px solid #0B2E6C;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  box-sizing: border-box;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Logo */
+.navbar .logo1 {
+  width: 130px;
+  height: auto;
+  padding-left: 2%;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Menu toggle button */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* List */
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 10px 15px;
+  transition: background 0.3s;
+  border-radius: 25px;
+}
+
+.nav-links li a:hover {
+  background-color: #0D121C;
+  color: #57f2aa;
+}
+
+/* Login & Register buttons */
+.login a, .register a {
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: 2px solid #57f2aa;
+}
+
+.login a {
+  color: #57f2aa;
+}
+
+.login a:hover {
+  color: white;
+}
+
+.register a {
+  color: #0D121C !important;
+  background-color: #57f2aa;
+}
+
+.register a:hover {
+  color: white !important;
+}
+
+/* Dropdown menu */
+.dropdown {
+  position: relative;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: transparent;
+  padding: 10px;
+  right: 0;
+  top: 100%;
+  list-style: none;
+  border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.logout a {
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: 2px solid #0B2E6C;
+  color: #0B2E6C;
+  text-align: center;
+  display: inline-block;
+  transition: background 0.3s, color 0.3s;
+  background-color: #0D121C;
+  cursor: pointer;
+}
+
+.logout a:hover {
+  background-color: #57f2aa;
+  color: #0B2E6C !important;
+}
+
+
+
+/* Animation */
+@keyframes fadeColor {
+  0% { color: #57f2aa; }
+  50% { color: #7265c2; }
+  100% { color: #57f2aa; }
+}
+
+.username {
+  font-weight: bold;
+  animation: fadeColor 3s infinite alternate ease-in-out;
+}
+/* Bouton menu burger */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+/* Menu mobile */
+@media screen and (max-width: 768px) {
+
+  .navbar-container {
+    padding: 0 10px; /* Ajoute un espacement latéral */
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #0D121C;
+    padding: 15px 0;
+    border-radius: 0 0 15px 15px;
+    box-sizing: border-box;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    text-align: center;
+    padding: 10px 0;
+    margin-bottom: 10px; /* Ajoute de l'espace entre les boutons */
+  }
+  
+  .nav-links li:last-child {
+    margin-bottom: 0; /* Évite un espace inutile après le dernier bouton */
+  }
+  
+
+  .menu-toggle {
+    display: block;
+  }
+}

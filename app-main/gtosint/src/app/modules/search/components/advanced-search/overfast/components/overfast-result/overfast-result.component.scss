@@ -1,0 +1,200 @@
+.controls-container {
+    display: flex;
+    flex-direction: column; /* Empile les éléments en colonne */
+    align-items: flex-start; /* Aligne à gauche */
+    gap: 10px; /* Espace entre les éléments */
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.player-info {
+    margin-top: 10%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0% 15%;
+}
+
+.player-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.namecard-container {
+    position: relative;
+    display: inline-block;
+}
+
+.player-namecard {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.player-username {
+    position: absolute;
+    top: -5%;
+    left: 5%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
+}
+
+.player-title {
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    color: white;
+    white-space: nowrap;
+}
+
+.endorsement-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.switch-container {
+    display: flex;
+    margin: 0% 15%;
+    gap: 20px;
+}
+
+.switch {
+    display: flex;
+    border: 2px solid rgba(11, 52, 107, 255);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 200px;
+
+    button {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        background-color: rgba(11, 52, 107, 255);
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s;
+
+        &.active {
+            background-color: rgba(87, 242, 170, 255);
+        }
+
+        &:hover {
+            filter: brightness(1.2);
+        }
+    }
+}
+
+.hero-selection {
+    display: flex;
+    flex-direction: column; /* Garde l’image et le menu déroulant alignés horizontalement */
+    align-items: center;
+    gap: 0px;
+}
+
+.hero-icon {
+    width: 125px;
+    height: 125px;
+    object-fit: contain;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+select {
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+}
+
+/* Conteneur pour le bouton et le menu déroulant */
+.dropdown-container {
+    position: absolute;
+    display: inline-block;
+    top: 99%;
+    left: 2.6%;
+}
+  
+  /* Liste déroulante */
+.dropdown-list {
+    background: #574F8A;
+    border: 1px solid #574F8A;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 130px;
+    z-index: 100;
+}
+  
+  /* Style des éléments du menu */
+.dropdown-list div {
+    display: flex;
+    padding: 10px;
+    justify-content: center; /* Centrage horizontal */
+    align-items: center; /* Centrage vertical */
+    color: white;
+    cursor: pointer;
+}
+  
+.dropdown-list div:hover {
+    background-color: #1FC183;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 0 auto; /* Centrer horizontalement */
+    margin-top: 20px;
+    max-width: 80%;
+}
+
+  
+.stat-card {
+    background-color: #574F8A;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+  
+.stat-card .label {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+  
+.stat-card .value {
+    color: rgba(87, 242, 170, 255);
+}
+
+.category-hero {
+    display: flex;
+    flex-direction: row;
+    margin: 0% 15%;
+    gap: 100px;
+}
+
+.select-response {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 5px;
+}
+
+.stats {
+    width: 100%;
+}
+
+.no-data {
+    justify-content: center;
+    align-items: center;
+}

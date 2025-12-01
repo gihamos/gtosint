@@ -1,0 +1,78 @@
+@if(!steamid){
+  <h2 id="titre">Steam profile research</h2>
+
+<div class="search-container">
+  <div class="form-wrapper">
+    <form (ngSubmit)="submitForm()" [formGroup]="steamFormControl">
+
+      <div class="form-group">
+        <label for="customPseudo" class="form-label">
+          <h3>Please enter the Steam64 identifier or a valid Steam Profile Link or his Custom Pseudo:</h3>
+        </label>
+        <input
+          id="customPseudo"
+          type="search"
+          class="form-input"
+          formControlName="customPseudo"
+          placeholder="Search"
+          required
+        />
+      </div>
+
+      <!-- Affichage conditionnel des erreurs -->
+       @if(steamFormControl.get('customPseudo')?.errors?.['invalidSteamIdentifier']){
+        <div  class="error-message">
+         Please enter a valid steam identifier
+        </div>
+       }
+       @if(steamFormControl.get('customPseudo')?.errors?.['invalidSteamIdentifier']){
+        <div class="alert warning-alert">
+          <strong>Warning!</strong>
+          {{ steamFormControl.get('customPseudo')?.errors?.['invalidSteamIdentifier'] }}
+        </div>
+       }
+
+
+
+      <button class="submit-button" type="submit" [disabled]="steamFormControl.invalid">
+        Search
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="error-container">
+  @if(steamFormControl.get('customPseudo')?.errors?.['pseudoError']){
+    <div  class="alert danger-alert">
+      <strong>Warning!</strong>
+      {{ steamFormControl.get('customPseudo')?.errors?.['pseudoError'] }}.
+    </div>
+  }
+   @if(steamFormControl.get('customPseudo')?.errors?.['serverError']){
+    <div class="alert danger-alert">
+      <strong>Warning!</strong>
+      {{ steamFormControl.get('customPseudo')?.errors?.['serverError'] }}.
+    </div>
+   }
+   @if(steamFormControl.get('customPseudo')?.errors?.['NoGameError']){
+    <div class="alert danger-alert">
+      <strong>Warning!</strong>
+      {{ steamFormControl.get('customPseudo')?.errors?.['NoGameError'] }}.
+    </div>
+   }
+   @if(steamFormControl.get('customPseudo')?.errors?.['SteamIdError']){
+    <div class="alert danger-alert">
+      <strong>Warning!</strong>
+      {{ steamFormControl.get('customPseudo')?.errors?.['SteamIdError'] }}.
+    </div>
+   }
+
+
+
+
+</div>
+
+}
+@else{
+  <app-steam-user-home (sendDataToParent)="handleDataFromChild($event)" [steamid]='steamid'></app-steam-user-home>
+}

@@ -1,0 +1,64 @@
+.search-display-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch; /* Étend les enfants à la hauteur du plus grand */
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+
+    h2 {
+        padding-left: 5%;
+        font-size: 28px;
+        margin: 5px;
+    }
+
+    p {
+        padding-left: 5%;
+        color: #595A5C;
+        font-size: 16px;
+        margin: 0;
+    }
+}
+
+.search-display-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch; /* Étend les enfants à la hauteur du plus grand */
+    gap: 16px;
+    width: 100%;
+    height: 100%;
+}
+
+.search-display-container > * {
+    flex: 1; /* Assure que les éléments prennent le même espace */
+    min-height: 300px; /* Ajuste selon tes besoins */
+    max-width: 45%;
+    display: flex;
+    flex-direction: column; /* S'assure que le contenu interne s'aligne bien */
+}
+
+/* Sur mobile, on empile les éléments */
+@media (max-width: 768px) {
+    .search-display-container {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20%;
+    }
+
+    .search-display-container > * {
+        width: 100%; /* Prend toute la largeur sur mobile */
+        max-width: 400px; /* Évite une trop grande largeur */
+    }
+
+    .search-display-page {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch; /* Étend les enfants à la hauteur du plus grand */
+        gap: 10px;
+        width: 100%;
+        height: 100%;
+    }
+}

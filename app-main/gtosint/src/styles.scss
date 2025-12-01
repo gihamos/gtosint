@@ -1,0 +1,48 @@
+/* Global style page */
+
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+  width:100%;
+  background-color: #05070A;
+  font-family: "PT Sans", sans-serif;
+  font-size: 14px;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  
+}
+
+.pt-sans-regular {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.pt-sans-bold {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.pt-sans-regular-italic {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.pt-sans-bold-italic {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+
+////
+/// /* Color Theme Swatches in Hex */
+// .UI/UX-1-hex { color: #7D468C; }
+// .UI/UX-2-hex { color: #897ABF; }
+// .UI/UX-3-hex { color: #120F26; }
+// .UI/UX-4-hex { color: #302A59; }
+// .UI/UX-5-hex { color: #57F2AA; }

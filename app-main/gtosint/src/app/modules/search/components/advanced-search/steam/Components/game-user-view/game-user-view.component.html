@@ -1,0 +1,95 @@
+  <div class="game-user-view">
+    <div class="game-header">
+      <div class="game-info">
+        <img class="game-cover" [src]="gameInfo.steamGameDetails?.header_image" alt="Game Cover">
+        <div class="game-details">
+          <h2 id="title">{{ gameInfo.steamGameDetails?.name }}</h2>
+          <p class="game-description">{{ gameInfo.steamGameDetails?.short_description }}</p>
+          <div class="game-meta">
+            <span class="release-date">Release Date: {{ gameInfo.steamGameDetails?.release_date }}</span>
+            <span class="genre">Genres:
+              @for (genre of  gameInfo.steamGameDetails?.genres; track $index) {
+               @if( $index < (gameInfo.steamGameDetails?.genres?.length || 0)){
+                 <span>   {{ genre }}</span>
+
+               }
+              }
+
+            </span>
+          </div>
+          <a [href]="gameInfo.steamGameDetails?.website" target="_blank" class="btn">View on Steam</a>
+          <div class="button-container">
+            <button class="btn1" (click)="onInit()">Back in search of games</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="achievement-table-container">
+    <h2>Success ending with the player</h2>
+    @if( gameProlfileStat && gameProlfileStat.steamProfileGamesAchevements && gameProlfileStat.steamProfileGamesAchevements.achievements.length>0 ) {
+    <table class="achievement-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name of success</th>
+          <th>Description</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+
+         @for(achievement of gameProlfileStat.steamProfileGamesAchevements.achievements;track $index){
+          @if(achievement.achieved){
+            <tr>
+              <td><img [src]="achievement.icon" alt="Achievement Icon" style="max-width: 70px; max-height: 50px;" title="achevement"></td>
+              <td class="content">{{ achievement.displayName||achievement.name }}</td>
+              <td class="content">{{ achievement.description }}</td>
+              <td>
+                <span [ngClass]="{'achieved': achievement.achieved, 'locked': !achievement.achieved}">
+                 Unblocked
+                </span>
+              </td>
+            </tr>
+          }
+
+
+         }
+
+      </tbody>
+    </table>
+  }
+  @else {
+    <h4>The player did not finish and not released any success on this game</h4>
+  }
+  </div>
+
+
+  <div class="game-statistics">
+    <h2>List of player's acquired skills on this game</h2>
+    @if(gameProlfileStat&&gameProlfileStat.stats&&gameProlfileStat.stats.length>0){
+      <table class="stat-table">
+        <thead>
+          <tr>
+            <th>Statistic Name</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for ( stat of gameProlfileStat.stats; track $index) {
+             <tr>
+              <td>{{ stat.displayName||stat.name }}</td>
+              <td>{{ stat.value }}</td>
+            </tr>
+          }
+
+        </tbody>
+      </table>
+    }
+    @else {
+      <h4>No statistics present in this game</h4>
+    }
+
+  </div>

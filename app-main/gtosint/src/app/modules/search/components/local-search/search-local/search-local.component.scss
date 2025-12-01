@@ -1,0 +1,117 @@
+.local-search {
+  //min-height: 100%;
+  align-items: flex-start; /* Correction de align-items */
+  justify-content: center;
+  padding: 10px;
+  flex-direction: row; /* Disposition horizontale pour l'ensemble champ/résultats */
+  background-color: #0D121C;
+  border: 1px solid #0B2E6C;
+  border-radius: 10px;
+  width: 100%; /* Utilise toute la largeur disponible */
+  height: 100%;
+  box-sizing: border-box;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-top: 0px;
+  //padding-right: 10%;
+  //padding-left: 10%;
+  //padding-top: 10%;
+
+  h2 {
+    padding-top: 5%;
+    padding-left: 5%;
+    margin: 0px;
+  }
+
+  p {
+    padding-left: 5%;
+    padding-top: 2%;
+    color: #595A5C;
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .local-search-block {
+
+  padding-right: 10%;
+  padding-left: 10%;
+  padding-top: 10%;
+    
+    @media (max-width: 768px) {
+    }
+
+    .search-pseudo,
+    .search-mail {
+        width: 90%;
+        min-width: 30%;
+        margin-bottom: 10px;
+        flex-direction: column;
+        justify-content: center;
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #57F2AA;
+            border-radius: 5px;
+            background-color: #121826;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease-in-out;
+
+            &:focus {
+                border-color: #0B2E6C;
+                box-shadow: 0 0 5px #57F2AA;
+            }
+        }
+    }
+
+    /* Résultats sous les champs */
+    .local-results {
+        width: 95%;
+        max-height: 300px;
+        overflow-y: auto;
+        background-color: #121826;
+        border-radius: 5px;
+        border: 1px solid #0B2E6C;
+        margin-top: 5%;
+        margin-bottom: 10%;
+        justify-content: center;
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+
+            li {
+                padding: 10px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+                &:hover,
+                &:focus {
+                    background-color: #0B2E6C;
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                .player-info {
+                    p {
+                        margin: 5px 0;
+                        font-size: 14px;
+                        color: #fff;
+                    }
+
+                    strong {
+                        color: #57F2AA;
+                    }
+                }
+            }
+        }
+    }
+  }
+}

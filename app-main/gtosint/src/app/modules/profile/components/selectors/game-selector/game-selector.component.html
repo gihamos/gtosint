@@ -1,0 +1,41 @@
+<div class="game-selector">
+    <h2>Your games</h2>
+  
+    <!-- Affichez la liste des jeux si disponibles -->
+    @if (gamesInfosList.length > 0) {
+      <div class="games-grid">
+        @for (game of gamesInfosList; track game) {
+          <app-game-card [game]="game"></app-game-card>
+        }
+      </div>
+    } @else {
+      <p>No games available.</p>
+    }
+  
+    <!-- Bouton pour activer/désactiver le mode "Modify" -->
+  <button class="update-button" (click)="toggleModifyMode()">
+    {{ isModifyMode ? 'Cancel' : 'Modify' }}
+  </button>
+
+  <!-- Formulaire pour ajouter un jeu (affiché uniquement en mode "Modify") -->
+  @if (isModifyMode) {
+    <div>
+      <input
+        type="text"
+        [(ngModel)]="newGame"
+        (input)="search(newGame)"
+        placeholder="Search for a game"
+      />
+      <!-- Menu déroulant pour afficher les résultats de la recherche -->
+      @if (searchResults.length > 0) {
+        <ul>
+          @for (result of searchResults; track result.id) {
+            <li (click)="selectGame(result)" (keydown.enter)="selectGame(result)" role="button" tabindex="0">
+              {{ result.name }}
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  }
+</div>

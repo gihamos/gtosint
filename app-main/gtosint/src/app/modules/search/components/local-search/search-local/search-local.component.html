@@ -1,0 +1,43 @@
+<div class="local-search">
+  <h2>Local search</h2>
+  <p>Use our database of players</p>
+  <div class="local-search-block">
+    <div class="search-pseudo">
+      <input
+        type="text"
+        [(ngModel)]="searchPseudo"
+        (input)="onPseudoInput()"
+        placeholder="Type a username"
+      />
+    </div>
+    <div class="search-mail">
+      <input
+        type="text"
+        [(ngModel)]="searchMail"
+        (input)="onMailInput()"
+        placeholder="Type an email"
+      />
+    </div>
+    <!-- Menu déroulant pour afficher les résultats de la recherche -->
+    <div class="local-results">
+      @if (searchResults.length > 0) {
+        <ul>
+          @for (result of searchResults; track result.id) {
+            <li (click)="selectGame(result)" (keydown.enter)="selectGame(result)" role="button" tabindex="0">
+              <div class="player-info">
+                <p><strong>Pseudo:</strong> {{ result.pseudos }}</p>
+                <p><strong>Email:</strong> {{ result.email }}</p>
+                @if (result.games) {
+                  <p><strong>Games:</strong> {{ result.games.join(', ')}}</p>
+                }
+                @if (result.countries) {
+                  <p><strong>Countries:</strong> {{ result.countries }}</p>
+                }
+              </div>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  </div>
+</div>

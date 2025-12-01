@@ -1,0 +1,20 @@
+<form class="riot-search-container" (ngSubmit)="submitForm()" [formGroup]="riotForm">
+  <h2>Search Riot Profile</h2>
+  <div class="form-group">
+    <label for="riotId">Riot ID</label>
+    <input id="riotId" formControlName="riotId" type="text" required />
+    @if (riotForm.get('riotId')?.errors?.['required']) {
+      <p>You need to enter a Riot ID</p>
+    }
+  </div>
+
+  <div class="form-group">
+    <label for="tagLine">Tag Line</label>
+    <input id="tagLine" formControlName="tagLine" type="text" required />
+    @if (riotForm.get('tagLine')?.errors?.['required']) {
+      <p>You need to enter a Tag Line</p>
+    }
+  </div>
+
+  <button type="submit" [disabled]="riotForm.invalid" class="submitButton">Search</button>
+</form>

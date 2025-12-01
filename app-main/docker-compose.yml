@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  backend:
+    build: 
+      context: ./server
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGODB_URI=${MONGODB_URI}
+      - FRONT_URL=http://localhost:4200
+      - BACK_PORT=3000
+    depends_on:
+      - frontend
+
+  frontend:
+    build:
+      context: ./gtosint
+      args:
+        - STAGE=dev # Utiliser le mode dev pour npm start
+    ports:
+      - "4200:4200"
+    environment:
+      - CHOKIDAR_USEPOLLING=true # Permet de mieux détecter les changements en dev
+    command: ["npm", "run", "start"]

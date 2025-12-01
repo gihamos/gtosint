@@ -1,0 +1,43 @@
+
+
+// #playersList {
+//     width: 100%; /* Prend toute la largeur disponible */
+//   }
+  
+//   .search {
+//     width: 100%; /* Assure que la recherche occupe toute la largeur de son parent */
+//     display: flex;
+//     justify-content: center; /* Centre le contenu du composant search */
+//     align-items: center; /* Centre le contenu du composant search */
+//   }
+  
+//   .switch {
+//     width: 80px; /* Taille du switch */
+//     height: 40px; /* Taille du switch */
+//     background-color: #ccc;
+//     border-radius: 50px; /* Bords arrondis */
+//     position: relative;
+//     cursor: pointer;
+//     transition: background-color 0.3s ease;
+//     margin-bottom: 20px; /* Espace entre le switch et le composant injecté */
+//   }
+  
+//   .switch.active {
+//     background-color: #4caf50;
+//   }
+  
+//   .slider {
+//     width: 32px; /* Taille du slider */
+//     height: 32px; /* Taille du slider */
+//     background-color: white;
+//     border-radius: 50%; /* Forme circulaire */
+//     position: absolute;
+//     top: 4px; /* Centré verticalement */
+//     left: 4px; /* Position initiale à gauche */
+//     transition: transform 0.3s ease;
+//   }
+  
+//   .switch.active .slider {
+//     transform: translateX(40px); /* Décalage du slider quand activé */
+//   }
+  

@@ -1,0 +1,70 @@
+stages:
+  - build
+  - push
+  - deploy
+
+# Variables Docker et Kubernetes
+variables:
+  IMAGE_FRONTEND: "registry.gitlab.com/gtosint/app/frontend"
+  IMAGE_BACKEND: "registry.gitlab.com/gtosint/app/backend"
+  KUBE_NAMESPACE: "production"
+  DOCKER_DRIVER: "overlay2"
+
+# Étape 1 : Build des images Docker
+build:
+  stage: build
+  image: docker:20.10.7  # Utiliser une image Docker pour construire les images
+  services:
+    - docker:20.10.7-dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "registry.gitlab.com"
+  script:
+    # Nettoyage des anciennes images pour éviter les conflits
+    - docker rmi $(docker images -q) || true
+    
+    # Build et tag du frontend
+    - docker build --build-arg STAGE=dev --build-arg MONGODB_URI=$MONGODB_URI --build-arg FRONT_URL=$FRONT_URL --build-arg BACK_PORT=$BACK_PORT -t $IMAGE_FRONTEND:$CI_COMMIT_SHORT_SHA -f ./gtosint/Dockerfile ./gtosint
+    - docker tag $IMAGE_FRONTEND:$CI_COMMIT_SHORT_SHA $IMAGE_FRONTEND:latest
+
+    # Build et tag du backend
+    - docker build --build-arg MONGODB_URI=$MONGODB_URI --build-arg FRONT_URL=$FRONT_URL --build-arg BACK_PORT=$BACK_PORT -t $IMAGE_BACKEND:$CI_COMMIT_SHORT_SHA -f ./server/Dockerfile ./server
+    - docker tag $IMAGE_BACKEND:$CI_COMMIT_SHORT_SHA $IMAGE_BACKEND:latest
+    
+    # Vérification des images construites
+    - docker images | grep gtosint
+
+# Étape 2 : Push des images vers GitLab Container Registry
+push:
+  stage: push
+  image: docker:20.10.7
+  services:
+    - docker:20.10.7-dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "registry.gitlab.com"
+  script:
+    - docker push $IMAGE_FRONTEND:$CI_COMMIT_SHORT_SHA
+    - docker push $IMAGE_FRONTEND:latest
+    - docker push $IMAGE_BACKEND:$CI_COMMIT_SHORT_SHA
+    - docker push $IMAGE_BACKEND:latest
+
+# Étape 3 : Déploiement dans Kubernetes
+deploy:
+  stage: deploy
+  image: bitnami/kubectl:latest
+  before_script:
+    - echo "$KUBE_CONFIG" | base64 -d > /root/.kube/config
+    - export KUBECONFIG=/root/.kube/config
+  script:
+    # Vérifier que le contexte est bien utilisé
+    - kubectl config use-context $(kubectl config current-context)
+    - kubectl apply -f k8s/
+    
+    # Mise à jour des images dans Kubernetes avec le tag du commit
+    - kubectl set image deployment/frontend frontend=$IMAGE_FRONTEND:$CI_COMMIT_SHORT_SHA --namespace=$KUBE_NAMESPACE --record
+    - kubectl set image deployment/backend backend=$IMAGE_BACKEND:$CI_COMMIT_SHORT_SHA --namespace=$KUBE_NAMESPACE --record
+    
+    # Redémarrage des déploiements pour appliquer les nouvelles images
+    - kubectl rollout restart deployment/frontend --namespace=$KUBE_NAMESPACE
+    - kubectl rollout restart deployment/backend --namespace=$KUBE_NAMESPACE
+  only:
+    - main  # Déploiement uniquement sur la branche main

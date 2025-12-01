@@ -1,0 +1,65 @@
+@if (playerProfile$ | async; as playerProfile) {
+    <div class="profile-container">
+      <!-- Bloc pour les informations de base (name, email, country) -->
+      <div class="user-block">
+
+        <div class="info-block">
+          <div class="info-user">
+            <h2>Your profile</h2>
+            <p>This cannot be changed yet</p>
+            <p class="name">Name: {{ playerProfile.name }}</p>
+            <p class="email">Email: {{ playerProfile.email }}</p>
+          </div>
+          <div class="info-country">
+            <app-country-selector 
+                [countryId]="playerProfile.countries | safeCountry" 
+                [userId]="userId"
+            ></app-country-selector>
+          </div>
+        </div>
+      
+        <!-- Bloc pour les pseudos (à droite) -->
+        <div class="pseudo-block">
+          <h2>Your usernames</h2>
+            <app-pseudo-selector
+            [pseudos]="playerProfile.pseudos | safePseudos" 
+            [userId]="userId"
+            ></app-pseudo-selector>
+        </div>
+      </div>
+  
+      <!-- Bloc pour les jeux (en dessous à gauche) -->
+      <div class="games-block">
+        <app-game-selector
+          [gamesId]="playerProfile.games | safeGames" 
+          [userId]="userId"
+        ></app-game-selector>
+      </div>
+    </div>
+    
+    <div class="delete-container">
+      <form [formGroup]="deleteForm" (ngSubmit)="deleteUser()">
+        <h2>Delete Account</h2>
+        <label for="email">Email:</label>
+        <input formControlName="email" type="email" id="email" placeholder="Enter your email" />
+    
+        <!-- Afficher les messages d'erreur -->
+        @if (deleteForm.get('email')?.errors?.['required'] && deleteForm.get('email')?.touched) { 
+          <p class="error">You need to enter your Email</p>
+        }
+        @if (deleteForm.get('email')?.errors?.['email'] && deleteForm.get('email')?.touched) { 
+          <p class="error">Invalid email format</p>
+        }
+        @if (deleteForm.get('email')?.errors?.['emailTaken'] && deleteForm.get('email')?.touched) { 
+          <p class="error">This email is already in use</p>
+        }
+    
+        @if (deleteForm.invalid && deleteForm.touched) { 
+          <p class="error">Please correct the errors above before deleting</p>
+        }
+    
+        <button type="submit" [disabled]="deleteForm.invalid" class="submitButton">Delete</button>
+      </form>
+    </div>
+    
+  }

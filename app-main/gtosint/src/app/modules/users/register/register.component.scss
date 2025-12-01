@@ -1,0 +1,123 @@
+
+* {
+    box-sizing: border-box;
+  }
+
+.register-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 40px;
+    
+    border-radius: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    background-color: #0D121C;
+    text-align: center;
+    position: relative;
+    z-index: 1; /* S'assurer que le contenu est au-dessus de l'image */
+    min-height: 70vh;
+    margin-left: 7%;
+    border: 1px solid #0B2E6C;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; /* Mettre l'image en arrière-plan */
+}
+
+.background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Assure que l'image couvre toute la surface */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.register-container h2 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    border-radius: 10px; /* Garder les coins arrondis */
+}
+
+h2 {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0B2E6C;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus {
+    outline: 2px solid #57F2AA;
+}
+
+p {
+    color: #ff5e5e;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.submitButton {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #57F2AA;
+    color: #120F26;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submitButton:disabled {
+    background-color: #57f2aa82;
+    cursor: not-allowed;
+}
+
+.submitButton:hover:not(:disabled) {
+    background-color: #45d98a;
+}
+
+@media (max-width: 768px) {
+    .register-container {
+        padding: 40px;
+        margin-top: 20%;
+        margin-left: 10px;
+        margin-right: 20px;
+    }
+}

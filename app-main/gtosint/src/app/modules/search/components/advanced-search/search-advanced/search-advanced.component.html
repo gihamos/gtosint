@@ -1,0 +1,51 @@
+<div class="advanced-search">
+  <h2>Advanced search</h2>
+  <p>Use worldwide informations</p>
+  <div class="carousel-container">
+    <button class="carousel-button prev" (click)="scrollCarousel(-1)">&#10094;</button> <!-- Flèche gauche -->
+    <div class="carousel" #carousel>
+      @for (platform of platforms; track platform.name) {
+        <div
+          class="carousel-item"
+          (click)="selectPlatform(platform.name)"
+          (keydown.enter)="selectPlatform(platform.name)"
+          (keydown.space)="selectPlatform(platform.name)"
+          tabindex="0"
+        >
+          <img [src]="platform.logo" [alt]="platform.name" [title]="platform.name" class="platform-icon" />
+        </div>
+      }
+    </div>
+    <button class="carousel-button next" (click)="scrollCarousel(1)">&#10095;</button> <!-- Flèche droite -->
+  </div>
+
+
+
+  <div class="search-form">
+    @if (selectedPlatform === 'Riot') {
+      <app-riot-form (responseDataChange)="onRiotDataReceived($event)" class="form-container"></app-riot-form>
+    }
+    @if (selectedPlatform === 'Overwatch') {
+      <app-overfast-form (responseDataChange)="onOverDataReceived($event)" class="form-container"></app-overfast-form>
+    }
+    @if (selectedPlatform === 'Clash Royale') {
+      <app-clash-royale-form (responseDataChange)="onCrDataReceived($event)" class="form-container"></app-clash-royale-form>
+    }
+
+    @if(selectedPlatform ==='Steam'){
+      <app-steam-home></app-steam-home>
+    }
+  </div>
+
+  <div class="results">
+    @if (isResultsRiotToPrint) {
+      <app-riot-result [riotData]="riotData"></app-riot-result>
+    }
+    @if (isResultsOverToPrint) {
+      <app-overfast-result [overData]="overData"></app-overfast-result>
+    }
+    @if (isResultsCrToPrint) {
+      <app-cr-result [crData]="crData"></app-cr-result>
+    }
+  </div>
+</div>

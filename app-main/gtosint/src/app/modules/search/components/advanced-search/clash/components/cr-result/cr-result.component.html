@@ -1,0 +1,31 @@
+<div style="margin-top: 10%;">
+    @if (crData?.player){
+        <div class="stats-container">
+            <div class="stat-card"><p><strong>Player's name :</strong> {{ crData?.player?.name || "Nom disponible"}}</p></div>
+            <div class="stat-card"><p><strong>Trophies :</strong> {{ crData?.player?.trophies || 'Non disponible' }}</p></div>
+            <div class="stat-card"><p><strong>Best trophies :</strong> {{ crData?.player?.bestTrophies || 'Non disponible' }}</p></div>
+            <div class="stat-card"><p><strong>Wins :</strong> {{ crData?.player?.wins || 'Non disponible' }}</p></div>
+            <div class="stat-card"><p><strong>Losses :</strong> {{ crData?.player?.losses || 'Non disponible' }}</p></div>
+            <div class="stat-card"><p><strong>Battles :</strong> {{ crData?.player?.battleCount || 'Non disponible' }}</p></div>
+            <div class="stat-card"><p><strong>Wins with 3 crowns :</strong> {{ crData?.player?.threeCrownWins || 'Non disponible' }}</p></div>
+            <div class="stat-card"><p><strong>Arena :</strong> {{ crData?.player?.arenaName || "Non disponible"}}</p></div>
+            <div class="stat-card"><p><strong>Clan's name :</strong> {{ crData?.player?.clan?.name || "Non disponible"}}</p></div>
+            <div class="stat-card"><p><strong>Donations per week :</strong> {{ crData?.player?.clan?.donations || "Non disponible"}}</p></div>
+            <div class="stat-card"><p><strong>Total donations :</strong> {{ crData?.player?.clan?.totalDonations || "Non disponible"}}</p></div>
+        </div>
+    } @else {
+        <h1 class="no-data">No data found</h1>
+    }
+    @if (crData?.chests) {
+        <div class="chests-container">
+            @for (chest of crData?.chests; track chest) {
+                <div class="chest-box">
+                    <img class="chest-icon" [src]="'./ClashRoyale-icons/' + chest.name + '.png'" alt="{{ chest.name }}">
+                    <div class="stat-card"><p>Number of chests before : {{ chest.index + 1}}</p></div>
+                </div>
+            }
+        </div>
+    } @else {
+        <h1 class="no-data">No data found</h1>
+    }
+</div>

@@ -1,0 +1,43 @@
+<section class="navbar">
+  <div class="navbar-container">
+    <a outerLinkActive="active" ariaCurrentWhenActive="page" [routerLink]="['/home']">
+      <img class="logo1" src="logo_extended.png" alt="GTOsint Logo" />
+    </a>
+
+    <!-- Bouton menu burger -->
+    <button class="menu-toggle" (click)="toggleMenu()" aria-label="Toggle Menu">
+      &#9776;
+    </button>
+
+    <ul class="nav-links" [class.active]="menuOpen">
+      <li>
+        <a (click)="closeMenu()" routerLinkActive="active" [routerLink]="['/about']">About</a>
+      </li>
+    
+      <!-- Afficher uniquement si l'utilisateur est authentifié -->
+      @if (isAuthenticated$ | async) {
+        <li>
+          <a (click)="closeMenu()" routerLinkActive="active" [routerLink]="['/profile']">Profile</a>
+        </li>
+        <li class="dropdown">
+          <span>Hello <span class="username">{{ userSubjectName$ | async }}</span></span>
+          <ul class="dropdown-menu">
+            <li class="logout">
+              <a (click)="logout(); closeMenu()" (keydown.enter)="logout(); closeMenu()" tabindex="0">
+                Logout
+              </a>
+            </li>            
+          </ul>
+        </li>
+      } @else {
+        <!-- Afficher uniquement si l'utilisateur n'est PAS authentifié -->
+        <li class="login">
+          <a (click)="closeMenu()" routerLinkActive="active" [routerLink]="['/login']">Login</a>
+        </li>
+        <li class="register">
+          <a (click)="closeMenu()" routerLinkActive="active" [routerLink]="['/register']">Register</a>
+        </li>
+      }
+    </ul>    
+  </div>
+</section>
