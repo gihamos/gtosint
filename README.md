@@ -15,7 +15,7 @@ Ce projet est réalisé dans le cadre de notre 3ᵉ année de licence informatiq
 ## Technologies utilisées
 
 - **Front-end** : Angular
-- **Back-end** : Node.js
+- **Back-end** : javascript avec Node.js
 - **Base de données** : mongoDB
 - **API** : Intégration d'API publiques pour récupérer des informations de jeu (Steam - Riot)
 
