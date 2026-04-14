@@ -3,6 +3,8 @@
 **GTOsint** est une application web permettant d'obtenir certaines informations de jeu d'un joueur à partir de son pseudo. Ce projet full-stack combine des technologies modernes pour le **front-end** et le **back-end**, ainsi que l'intégration d'API et de bases de données, avec une interface utilisateur développée avec **Angular**.
 
 Ce projet est réalisé dans le cadre de notre 3ᵉ année de licence informatique à l'Université du Mans, dans les modules **"IPM" (Interaction Personne Machine)** et **"Architecture Web"**.  
+<img width="1872" height="891" alt="gtosint" src="https://github.com/user-attachments/assets/0c646086-6883-46f8-94a6-42d6ccdf2160" />
+
 
 ## Fonctionnalités principales
 
